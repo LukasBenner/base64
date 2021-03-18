@@ -14,22 +14,10 @@ int main()
 	char decision;
 	std::cin >> decision;
 
-
-	while (true)
+	if (decision == 'e' || decision == 'd')
 	{
-		if (decision == 'e' || decision == 'd')
-		{
-			auto out = decision == 'e' ? encode(in) : decode(in);
-			for (auto letter : out)
-			{
-				std::cout << letter;
-			}
-			break;
-		}
-		else
-		{
-			continue;;
-		}
+		auto out = decision == 'e' ? encode(in) : decode(in);
+		std::cout << out;
 	}
 	return 0;
 }

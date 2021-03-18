@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "helperFunctions.h"
+#include <sstream>
 
 
 
@@ -14,7 +15,7 @@ void encode_3_byte(char* in, std::vector<char>* out)
 }
 
 
-std::vector<char> encode(char* in)
+std::string encode(char* in)
 {
 	std::vector<char> out;
 	float size = getSize(in);
@@ -25,6 +26,11 @@ std::vector<char> encode(char* in)
 		in += 3;
 		len += 3;
 	}
-	return out;
+	std::stringstream ss;
+	for(auto letter : out)
+	{
+		ss << letter;
+	}
+	return ss.str();
 }
 

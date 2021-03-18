@@ -14,7 +14,9 @@ namespace base64encryptionUnitTest
 		
 		TEST_METHOD(TestMethod1)
 		{
-			
+			char* in = "Hallo";
+			std::string out = "SGFsbG8=";
+			Assert::IsTrue(out.compare(encode(in)) == 0);
 		}
 	};
 }

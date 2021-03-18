@@ -1,6 +1,9 @@
 #pragma once
 #include <vector>
+#include <sstream>
+
 #include "helperFunctions.h"
+
 
 
 
@@ -12,7 +15,7 @@ void decode_4_byte(char* in, std::vector<char>* out)
 }
 
 
-std::vector<char>decode(char* in)
+std::string decode(char* in)
 {
 	std::vector<char>out;
 	float size = getSize(in);
@@ -23,5 +26,10 @@ std::vector<char>decode(char* in)
 		in += 4;
 		len += 4;
 	}
-	return out;
+	std::stringstream ss;
+	for (auto letter : out)
+	{
+		ss << letter;
+	}
+	return ss.str();
 }
