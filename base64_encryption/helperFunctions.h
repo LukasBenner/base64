@@ -2,15 +2,8 @@
 
 const std::string lookup_table = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-float getSize(char* text)
-{
-	float size = 0;
-	while (*(text++) != '\0')
-	{
-		size++;
-	}
-	return size;
-}
+
+
 
 
 std::vector<std::string> convert_to_byte_wise(std::string in, uint8_t length)

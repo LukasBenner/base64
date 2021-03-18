@@ -5,8 +5,7 @@
 
 
 
-
-void encode_3_byte(char* in, std::vector<char>* out)
+void encode_3_byte(std::string in, std::string* out)
 {
 	out->push_back(lookup_table[(in[0] & 0xFC) >> 2]);
 	out->push_back(lookup_table[((in[0] & 0x3) << 4) | ((in[1] & 0xF0) >> 4)]);
@@ -14,23 +13,14 @@ void encode_3_byte(char* in, std::vector<char>* out)
 	out->push_back(in[2] ? lookup_table[in[2] & 0x3F] : '=');
 }
 
-
-std::string encode(char* in)
+std::string encode(std::string in)
 {
-	std::vector<char> out;
-	float size = getSize(in);
-	int len = 0;
-	while (len < size)
+	std::string out;
+	auto three_byte_wise = convert_to_byte_wise(in, 3);
+	for (auto input_string : three_byte_wise)
 	{
-		encode_3_byte(in, &out);
-		in += 3;
-		len += 3;
+		encode_3_byte(input_string, &out);
 	}
-	std::stringstream ss;
-	for(auto letter : out)
-	{
-		ss << letter;
-	}
-	return ss.str();
+	return out;
 }
 
