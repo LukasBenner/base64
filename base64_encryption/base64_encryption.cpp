@@ -8,7 +8,6 @@ int main()
 {
 	std::string input;
 	std::getline(std::cin, input);
-	char* in = &input[0];
 
 	std::cout << "Press e for encoding, press d for decoding\n";
 	char decision;
@@ -16,7 +15,7 @@ int main()
 
 	if (decision == 'e' || decision == 'd')
 	{
-		auto out = decision == 'e' ? encode(in) : decode(in);
+		auto out = decision == 'e' ? encode(input) : decode(input);
 		std::cout << out;
 	}
 	return 0;

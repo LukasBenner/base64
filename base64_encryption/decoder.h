@@ -7,7 +7,7 @@
 
 
 
-void decode_4_byte(char* in, std::vector<char>* out)
+void decode_4_byte(std::string in, std::string* out)
 {
 	out->push_back(lookup_table.find(in[0]) << 2 | (lookup_table.find(in[1]) & 0b00110000) >> 4);
 	out->push_back((lookup_table.find(in[1]) & 0b00001111) << 4 | (in[2] == '=' ? 0x00 : (lookup_table.find(in[2]) & 0b00111100) >> 2));
@@ -15,21 +15,13 @@ void decode_4_byte(char* in, std::vector<char>* out)
 }
 
 
-std::string decode(char* in)
+std::string decode(std::string in)
 {
-	std::vector<char>out;
-	float size = getSize(in);
-	int len = 0;
-	while (len < size)
+	std::string out;
+	auto four_byte_wise = convert_to_byte_wise(in, 4);
+	for (auto input_string : four_byte_wise)
 	{
-		decode_4_byte(in, &out);
-		in += 4;
-		len += 4;
+		decode_4_byte(input_string, &out);
 	}
-	std::stringstream ss;
-	for (auto letter : out)
-	{
-		ss << letter;
-	}
-	return ss.str();
+	return out;
 }
