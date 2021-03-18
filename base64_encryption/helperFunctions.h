@@ -17,7 +17,7 @@ std::vector<std::string> convert_to_three_byte_wise(std::string in)
 {
 	std::vector<std::string> three_byte_wise;
 	uint8_t counter = 0;
-	std::string three_byte = "";
+	std::string three_byte;
 	for (auto letter : in)
 	{
 		three_byte.push_back(letter);
@@ -28,6 +28,11 @@ std::vector<std::string> convert_to_three_byte_wise(std::string in)
 			three_byte = "";
 			counter = 0;
 		}
+	}
+	if (counter != 0)
+	{
+		//left for loop without adding the uncompleted string
+		three_byte_wise.push_back(three_byte);
 	}
 	while (three_byte_wise.back().length() < 3)
 	{

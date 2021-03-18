@@ -14,7 +14,7 @@ namespace base64encryptionUnitTest
 		
 		TEST_METHOD(TestEncode1)
 		{
-			char* in = "Hallo";
+			std::string in  = "Hallo";
 			std::string out = "SGFsbG8=";
 			Assert::IsTrue(out == encode(in));
 		}
@@ -30,7 +30,12 @@ namespace base64encryptionUnitTest
 		{
 			std::string in = "Hallo Welt";
 			std::vector<std::string> out = { "Hal", "lo ", "Wel", "t\0\0" };
-			
+		}
+
+		TEST_METHOD(TestConvert_to_vector_leftover_bug)
+		{
+			std::string in = "Hallo";
+			std::vector<std::string> out = { "Hal", "lo "};
 		}
 	};
 }
